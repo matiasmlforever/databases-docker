@@ -38,7 +38,7 @@ services:
     restart: ${RESTART}
     # DESCOMENTAR PARA PERSISTIR DATA
     volumes:
-      - D:\DEV\databases-data\postgresql:/var/lib/postgresql/data
+      - E:\DEV\databases-data\postgresql:/var/lib/postgresql/data
       - ./conf/postgres.conf:/etc/postgresql/postgresql.conf
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -55,15 +55,16 @@ services:
     restart: ${RESTART}
     # DESCOMENTAR PARA PERSISTIR DATA
     volumes:
-      - D:\DEV\databases-data\postgresql11:/var/lib/postgresql/data
+      - E:\DEV\databases-data\postgresql11:/var/lib/postgresql/data
       - ./conf/postgres11.conf:/etc/postgresql/postgresql.conf
+      - ./conf/pg_hba.conf:/etc/postgresql/pg_hba.conf
     environment:
       POSTGRES_USER: ${POSTGRES11_USER}
       POSTGRES_PASSWORD: ${POSTGRES11_PASSWORD}
       POSTGRES_DB: ${POSTGRES11_DB}
     ports:
       - "${POSTGRES11_PORT}:${POSTGRES11_PORT}"
-    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf -c hba_file=/etc/postgresql/pg_hba.conf
   ## BASE DE DATOS MONGO
   mongodb:
     image: ${MONGO_IMAGE}

@@ -1,0 +1,70 @@
+# Docker ignore file for PostgreSQL 11 production image
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+*.md
+docs/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Build scripts (included in image via COPY)
+build.sh
+push.sh
+deploy.sh
+test-deployment.sh
+manage.sh
+
+# Environment files (secrets should not be in image)
+.env
+.env.local
+.env.development
+.env.test
+
+# Backup files
+*.bak
+*.backup
+*.sql.gz
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Node modules (if any)
+node_modules/
+npm-debug.log*
+
+# Python files (if any)
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Test files
+test/
+tests/
+*_test.sh
+test_*.sh
+
+# Development tools
+Makefile
+docker-compose*.yml
